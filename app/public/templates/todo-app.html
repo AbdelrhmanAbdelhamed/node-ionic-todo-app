@@ -1,0 +1,79 @@
+<ion-view title="Private Todos">
+    <ion-nav-buttons side="left">
+        <button ng-click="toggleLeftSideMenu()" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-side-menus>
+
+        <ion-side-menu-content>
+
+            <ion-content>
+                <div class="list-borderles">
+
+                    <div class="row responsive-lg">
+
+                        <div class="col">
+                            <label class="item-input">
+                                <i class="icon pg-icon ion-clipboard placeholder-icon"></i>
+                                <input type="text" placeholder="What needs to be done?" ng-model="ToDo.Description">
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="row responsive-lg">
+
+                        <div class="col">
+                            <label class="item-input">
+                                <i class="icon pg-icon ion-calendar placeholder-icon"></i>
+                                <input type ="text" placeholder="Set a reminder" ng-click="showDatePicker()" ng-model="ToDo.Reminder"/>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row responsive-lg"> 
+                        <div class="col">
+                            <button type="button" class=" pg-add-btn button button-outline button-balanced padding-horizontal" ng-click="addToDo()">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <ion-list>
+
+                    <ion-item class="item item-button-right item-checkbox checkbox-royal" ng-repeat="toDo in toDoList track by toDo.Description">
+                        <span ng-class="{'pg-done-todo': toDo.isDone == 1}" ng-bind="toDo.Description"></span>
+
+                        <button class="button button-clear button-large button-assertive" ng-click="removeToDo($index)">
+                            <i class ="icon ion-ios-close-outline"></i>
+                        </button>
+
+                        <label class="checkbox" style="width: 0%">
+                            <input type="checkbox" ng-click="setIsDone($index, checkBox.isDone)" ng-model="checkBox.isDone" ng-checked="toDo.isDone == 1">
+                        </label>
+                    </ion-item>
+
+                </ion-list>
+            </ion-content>
+        </ion-side-menu-content>
+
+        <ion-side-menu side="left">
+            <ion-content class="has-header">
+                <ion-list>
+                    <div class="item bar bar-header bar-dark">
+                        <h1 class="title">{{user.Name}}</h1>
+                    </div>
+                     <ion-item menu-close ng-click="goToGlobalRoom()">
+                        Global-Room
+                    </ion-item>
+                    <ion-item menu-close ng-click="signOut()">
+                        Sign-out
+                    </ion-item>
+                </ion-list>
+
+            </ion-content>
+        </ion-side-menu>
+    </ion-side-menus>
+
+</ion-view>
